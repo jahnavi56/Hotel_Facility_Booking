@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container{
+            border: 1px solid blanchedalmond;
+            width:400px;
+            margin: auto;
+            box-shadow: 6px 5px 7px 1px;
+        }
+  #message{
+    width:420px;
+    height: 450px;
+    float: right;
+    margin-top: 15px;
+}
+legend{
+    color: burlywood;
+}
+  .hi{
+        color:blanchedalmond;
+        margin-left: 30px;
+        background-color:rgb(92, 64, 51) ;
+        margin-left: 163px;
+        height: 25px;
+        border: 1px solid;
+}
+.ji{
+    margin-left: 33px;
+    height:30px;
+    width:350px;
+}
+.back-video{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index:-1;
+}
+h1{
+    text-align: center;
+}
+input{
+    margin-left: 42px;
+    width: 300px;
+    height: 35px;
+}
+textarea{
+    margin-left: 42px; 
+}
+button{
+    background-color: salmon;
+    color: aliceblue;
+    width: 180px;
+    height: 35px;
+    border-radius: 10px;
+    margin-left: 110px;
+    margin-bottom: 10px;
+}
+th{
+    color: aliceblue;
+}
+td{
+    color: aliceblue;
+}
+    </style>
+</head>
+<body>
+    <div id="container">
+        <video autoplay loop muted plays-inline class="back-video"><source src="mixkit-sunset-on-a-beach-seen-from-a-terrace-44500-medium.mp4" type="video/mp4"></video>
+        <div id="first">
+            <form action="">
+            <legend><h1>Send Us Message</h1></legend>
+            <input type="text" placeholder="enter your name"  id="name" onkeyup="validate()"><br><br>
+            <p id="para" style="color: red;display: none;">please enter a valid name</p>
+            <input type="mail" placeholder="enter your email" id="email"><br><br>
+            <p id="para1" style="color: red;display: none;">please enter a valid email</p>
+            <input type="number" placeholder="enter your number" id="phno"><br><br>
+            <p id="para2" style="color: red;display: none;">please enter a valid phone number</p>
+            <textarea  cols="39" rows="5" placeholder="enter your message" id="matter"></textarea><br><br>
+            <button type="button" onclick="adduser()" disabled>Send Message</button>
+        </form></div>
+        </div>
+    <br>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Name </th>
+                    <th>E-mail</th>
+                    <th>Mobile Number</th>
+                    <th>Message</th>
+                </tr>
+            </thead>
+        <tbody>
+
+        </tbody>
+        </table>
+    <script>
+        var users = [];
+        function adduser() {
+           var user={
+            name:"",
+            email:"",
+            phno:"",
+            matter:"",
+           } 
+           for(a in user){
+            user[a]=document.getElementById(a).value
+           }
+           users.push(user)
+           console.log(users)
+           displayusers();
+        }
+        function displayusers(){
+            document.querySelector("tbody").innerHTML = ""
+            users.forEach((usr)=>{
+                var mytr=document.createElement("tr")
+            for(a in usr){
+                var mytd=document.createElement("td")
+                mytd.innerHTML=usr[a]
+                mytr.appendChild(mytd)
+            }
+            document.querySelector("tbody").appendChild(mytr)
+            })
+            clearform();
+        }
+           function clearform(){
+             var user={
+             name:"",
+             email:"",
+             phno:"",
+             matter:"",
+            } 
+           for(a in user){
+           document.getElementById(a).value=""
+            }
+         }
+         function validate(){
+            var name=document.getElementById("name").value
+            var email=document.getElementById("email").value
+            var phno=document.getElementById("phno").value
+            var pattern=/^[A-Za-z\s\-']+$/
+            var pattern1=/^[a-z0-9]+@[a-z]+\.[a-z]{2,3}$/
+            var pattern2=/^[0-9]{10}$/
+            if(pattern.test(name)){
+                document.querySelector("button").removeAttribute("disabled")
+                document.getElementById("para").style.display="none"
+                document.getElementById("name").style.border="4px solid yellowgreen"
+
+            }else{
+                document.querySelector("button").setAttribute("disabled",true)
+                document.getElementById("para").style.display="block"
+                document.getElementById("name").style.border="2px solid red"
+            }
+            if(pattern1.test(email)){
+                document.querySelector("button").removeAttribute("disabled")
+                document.getElementById("para1").style.display="none"
+                document.getElementById("email").style.border="4px solid yellowgreen"
+            }else{
+                document.querySelector("button").setAttribute("disabled",true)
+                document.getElementById("para1").style.display="block"
+                document.getElementById("email").style.border="2px solid red"
+            }
+            if(pattern2.test(phno)){
+                document.querySelector("button").removeAttribute("disabled")
+                document.getElementById("para2").style.display="none"
+                document.getElementById("phno").style.border="4px solid yellowgreen"
+            }else{
+                document.querySelector("button").setAttribute("disabled",true)
+                document.getElementById("para2").style.display="block"
+                document.getElementById("phno").style.border="2px solid red"
+            }
+         }
+    </script>
+</body>
+</html>

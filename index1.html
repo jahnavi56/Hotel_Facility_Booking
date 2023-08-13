@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container{
+            width: 960px;
+            margin: auto;
+            margin-top: 60px;
+        }
+    #third{
+        border: 3px solid olivedrab ;
+        border-style: dashed;
+        width: 438px;
+        float: left;
+        height: 405px ;
+        background-color: black;
+        
+        
+    }
+    #second{
+        border: 1px solid;
+        width: 400px;
+        float: right;
+        background-color: whitesmoke;
+        box-shadow: 3px 3px 7px 1px;
+    }
+    h1,p,h2{
+        color: white;
+        text-align: center;
+    }
+    h3{
+        color: darkolivegreen;
+        text-align: center;
+    }
+    label{
+        padding-left: 10px;
+    }
+    #add{
+        margin-left: 100px;
+        margin-bottom: 10px;
+    }
+    button{
+        background-color: black;
+        color: white;
+        border-radius: 33px;
+         height: 34px;
+         width: 144px;
+    }
+    </style>
+</head>
+<body>
+    <div id="container">
+     <div id="first">
+        <div id="third">
+            <h1>TIME OPEN</h1>
+            <h3>Monday-friday</h3>
+            <p>7am-11am(breakfast)</p>
+            <p>11am-10pm(Lunch/Dinner)</p>
+            <h3>Saturday and Sunday</h3>
+            <p>9am-10am(breakfast)</p>
+            <p>10am-10pm(Lunch/Dinner)</p>
+            <h2>Call Us :(123)34-50-567</h2>
+        </div>
+     </div>
+     <div id="second"><form id=box action="">
+        <h2 style="color: olive;">RESERVATION ONLINE</h2><br>
+        <label for="">Name*&nbsp &nbsp &nbsp &nbsp     &nbsp  &nbsp &nbsp&nbsp</label>
+        <input type="text" id="name" placeholder="your name"><br><br>
+        <label for="">email*&nbsp &nbsp &nbsp &nbsp   &nbsp &nbsp &nbsp &nbsp</label>
+        <input type="text" id="email" onkeyup="validate()"placeholder="your email"><br><br>
+        <label for="">Phone Number*</label>
+        <input type="number" id="number" placeholder="your Mobilenumber"><br><br>
+        <label for="">ocassion&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp</label>
+        <input type="text" id="ocassion"><br><br>
+        <label for="">date*&nbsp &nbsp &nbsp &nbsp     &nbsp  &nbsp &nbsp&nbsp&nbsp &nbsp &nbsp &nbsp     &nbsp  &nbsp &nbsp&nbsp&nbsp &nbsp </label>
+        <input type="date" id="date"><br><br>
+        <label for="time">Time:&nbsp &nbsp &nbsp &nbsp     &nbsp  &nbsp &nbsp&nbsp&nbsp &nbsp &nbsp &nbsp     &nbsp  &nbsp &nbsp&nbsp&nbsp &nbsp &nbsp &nbsp</label>
+        <input type="time" id="time"><br><br>
+        <label for="size">Party size*</label>
+        <input type="radio" name="size" value="5-10">5-10
+        <input type="radio" name="size" value="10-15">10-15
+        <input type="radio" name="size" value="15-20">15-20
+        <input type="radio" name="size" value="20-25">20-25
+        <br><br>
+        <button type="button" onclick="adduser()" id="add">Make A Reservation</button>
+        <button type="button" onclick="updateuser()"id="update">update</button><br>
+    </form></div>
+    <br><br>
+    </div>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>email</th>
+                <th>Phone Number</th>
+                <th>ocassion</th>
+                <th>date</th>
+                <th>time</th>
+                <th>Party size</th>
+                <th>edit</th>
+                <th>delete</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <script>
+        var users = [];
+        var sizebtn = document.getElementsByName("size")
+        function adduser() {
+            var user = {
+                name: "",
+                email: "",
+                number: "",
+                ocassion:"",
+                date: "",
+                time:"",
+                size: "",
+            }
+            for (a in user) {
+                if (a != "size") {
+                    user[a] = document.getElementById(
+                        a).value;
+                }
+                else if (a == "size") {
+                    sizebtn.forEach((sz) => {
+                        if (sz.checked) {
+                            user.size = sz.value;
+                        }
+                    })
+                }
+            }
+            users.push(user)
+            displayuser();
+            clearform();
+        }
+        function displayuser() {
+            document.querySelector("tbody").innerHTML = ""
+            users.forEach((usr,i) => {
+                var mytr = document.createElement("tr")
+                for (a in usr) {
+                    var mytd = document.createElement("td")
+                    mytd.innerHTML = usr[a]
+                    mytr.appendChild(mytd)
+                }
+                var edtd=document.createElement("td")
+                mytr.appendChild(edtd)
+                var edbtn=document.createElement("button")
+                edtd.appendChild(edbtn)
+                edbtn.innerHTML="edit"
+                edbtn.setAttribute("onclick","edituser("+i+")")
+
+                var detd=document.createElement("td")
+                mytr.appendChild(detd)
+                var debtn=document.createElement("button")
+                detd.appendChild(debtn)
+                debtn.innerHTML="delete"
+                debtn.setAttribute("onclick","deleteuser("+i+")")
+
+                document.querySelector("tbody").appendChild(mytr)
+            })
+        }
+        function edituser(i){
+            gIndex=i
+            for( a in users[i]){
+                if( a!= "size"){
+                    document.getElementById(a).value = users[i][a]
+                }else if (a == "size") {
+                    sizebtn.forEach((sz) => {
+                        if (sz.value == users[i].size) {
+                            sz.checked = true
+                        }
+                    })
+                }
+            }
+            displayuser()
+            document.getElementById("add").style.display="none"
+            document.getElementById("update").style.display="block"
+        }
+        function updateuser(){
+            document.getElementById("add").style.display="block"
+            document.getElementById("update").style.display="none"
+            var user = {
+                name: "",
+                email: "",
+                number: "",
+                ocassion:"",
+                date: "",
+                time:"",
+                size: "",
+            }
+            for (a in user) {
+                if (a != "size") {
+                    user[a] = document.getElementById(a).value;
+                }else if (a == "size") {
+                    sizebtn.forEach((sz) => {
+                        if (sz.checked) {
+                            user.size = sz.value;
+                        }
+                    })
+                }
+                
+            }
+            users[gIndex]=user
+            displayuser();
+            clearform();
+        }
+        function deleteuser(i) {
+            users = users.filter((usr, index) => {
+                return i != index;
+            })
+            displayuser()
+            clearform()
+        }
+        function clearform() {
+            var user = {
+                name: "",
+                email: "",
+                number: "",
+                ocassion:"",
+                date: "",
+                time:"",
+                size: "",
+            }
+            for (a in user) {
+                if (a != "size") {
+                    document.getElementById(a).value = ""
+                    sizebtn.forEach((sz) => {
+                        sz.checked = false
+                    })
+                }
+            }
+        }
+        function validate(){
+        var emailValue=document.getElementById("email").value
+        var pattern=/^[a-z0-9]+@[a-z]+\.[a-z]{2,3}$/
+        if(pattern.test(emailValue)){
+            document.getElementById("add").removeAttribute("disabled")
+            document.getElementById("email").style.border="2px solid green"
+        }else{
+            document.getElementById("add").setAttribute("disabled",true)
+            document.getElementById("email").style.border="2px solid red"
+        }
+     }
+    </script>
+</body>
+</html>
