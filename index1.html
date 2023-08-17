@@ -86,28 +86,16 @@
         <input type="radio" name="size" value="20-25">20-25
         <br><br>
         <button type="button" onclick="adduser()" id="add">Make A Reservation</button>
-        <button type="button" onclick="updateuser()"id="update">update</button><br>
+      
     </form></div>
     <br><br>
     </div>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>email</th>
-                <th>Phone Number</th>
-                <th>ocassion</th>
-                <th>date</th>
-                <th>time</th>
-                <th>Party size</th>
-                <th>edit</th>
-                <th>delete</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
+    
     <script>
-        var users = [];
+        var users=JSON.parse(localStorage.getItem("users"))
+        if(users==null){
+           users = [];
+        } 
         var sizebtn = document.getElementsByName("size")
         function adduser() {
             var user = {
@@ -133,86 +121,9 @@
                 }
             }
             users.push(user)
-            displayuser();
             clearform();
-        }
-        function displayuser() {
-            document.querySelector("tbody").innerHTML = ""
-            users.forEach((usr,i) => {
-                var mytr = document.createElement("tr")
-                for (a in usr) {
-                    var mytd = document.createElement("td")
-                    mytd.innerHTML = usr[a]
-                    mytr.appendChild(mytd)
-                }
-                var edtd=document.createElement("td")
-                mytr.appendChild(edtd)
-                var edbtn=document.createElement("button")
-                edtd.appendChild(edbtn)
-                edbtn.innerHTML="edit"
-                edbtn.setAttribute("onclick","edituser("+i+")")
-
-                var detd=document.createElement("td")
-                mytr.appendChild(detd)
-                var debtn=document.createElement("button")
-                detd.appendChild(debtn)
-                debtn.innerHTML="delete"
-                debtn.setAttribute("onclick","deleteuser("+i+")")
-
-                document.querySelector("tbody").appendChild(mytr)
-            })
-        }
-        function edituser(i){
-            gIndex=i
-            for( a in users[i]){
-                if( a!= "size"){
-                    document.getElementById(a).value = users[i][a]
-                }else if (a == "size") {
-                    sizebtn.forEach((sz) => {
-                        if (sz.value == users[i].size) {
-                            sz.checked = true
-                        }
-                    })
-                }
-            }
-            displayuser()
-            document.getElementById("add").style.display="none"
-            document.getElementById("update").style.display="block"
-        }
-        function updateuser(){
-            document.getElementById("add").style.display="block"
-            document.getElementById("update").style.display="none"
-            var user = {
-                name: "",
-                email: "",
-                number: "",
-                ocassion:"",
-                date: "",
-                time:"",
-                size: "",
-            }
-            for (a in user) {
-                if (a != "size") {
-                    user[a] = document.getElementById(a).value;
-                }else if (a == "size") {
-                    sizebtn.forEach((sz) => {
-                        if (sz.checked) {
-                            user.size = sz.value;
-                        }
-                    })
-                }
-                
-            }
-            users[gIndex]=user
-            displayuser();
-            clearform();
-        }
-        function deleteuser(i) {
-            users = users.filter((usr, index) => {
-                return i != index;
-            })
-            displayuser()
-            clearform()
+            localStorage.setItem("users",JSON.stringify(users))
+            window.location.href="index1display.html"
         }
         function clearform() {
             var user = {
@@ -243,7 +154,27 @@
             document.getElementById("add").setAttribute("disabled",true)
             document.getElementById("email").style.border="2px solid red"
         }
+
+        // const name = document.getElementById("name").value;
+        //     const email = document.getElementById("email").value;
+        //     const phno = document.getElementById("phno").value;
+        //     const matter = document.getElementById("matter").value;
+            
+        //     const namePattern = /^[a-zA-Z\s]+$/;
+        //     const emailPattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+        //     const phnoPattern = /^\d{10}$/;
+        //     const nameIsValid = namePattern.test(name);
+        //     const emailIsValid = emailPattern.test(email);
+        //     const phnoIsValid = phnoPattern.test(phno);
+            
+        //     document.getElementById("para").style.display = nameIsValid ? "none" : "block";
+        //     document.getElementById("para1").style.display = emailIsValid ? "none" : "block";
+        //     document.getElementById("para2").style.display = phnoIsValid ? "none" : "block";
+            
+        //     const sendButton = document.getElementById("sendButton");
+        //     sendButton.disabled = !(nameIsValid && emailIsValid && phnoIsValid && matter.length > 0);
      }
+        
     </script>
 </body>
 </html>

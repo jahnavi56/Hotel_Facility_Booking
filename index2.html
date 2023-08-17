@@ -90,31 +90,18 @@
                 <legend>
                     <h1>Send Us Message</h1>
                 </legend>
-                <input type="text" placeholder="enter your name" id="name" onkeyup="validate()"><br><br>
+                <input type="text" placeholder="Name" id="name" onkeyup="validate()"><br><br>
                 <p id="para" style="color: red; display: none;">Please enter a valid name</p>
-                <input type="text" placeholder="enter your email" id="email" onkeyup="validate()"><br><br>
+                <input type="text" placeholder="Email" id="email" onkeyup="validate()"><br><br>
                 <p id="para1" style="color: red; display: none;">Please enter a valid email</p>
-                <input type="text" placeholder="enter your number" id="phno" onkeyup="validate()"><br><br>
+                <input type="text" placeholder="Mobile No." id="phno" onkeyup="validate()"><br><br>
                 <p id="para2" style="color: red; display: none;">Please enter a valid phone number</p>
-                <textarea cols="39" rows="5" placeholder="enter your message" id="matter" onkeyup="validate()"></textarea><br><br>
-                <button type="button" id="sendButton" onclick="adduser()" disabled>Send Message</button>
+                <textarea cols="39" rows="5" placeholder="Write what do you want ?" id="matter" onkeyup="validate()"></textarea><br><br>
+                <button type="button" id="sendButton" onclick="addusers()" disabled>Send</button>
             </form>
         </div>
     </div>
     <br>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Name </th>
-                <th>E-mail</th>
-                <th>Mobile Number</th>
-                <th>Message</th>
-            </tr>
-        </thead>
-        <tbody>
-
-        </tbody>
-    </table>
     <script>
         var users = [];
         function validate() {
@@ -137,33 +124,25 @@
             const sendButton = document.getElementById("sendButton");
             sendButton.disabled = !(nameIsValid && emailIsValid && phnoIsValid && matter.length > 0);
         }
-
-        function adduser() {
-            var user = {
+        var users1=JSON.parse(localStorage.getItem("users1"))
+        if(users1== null){
+            users1=[];
+        }
+        function addusers() {
+            var user1 = {
                 name: "",
                 email: "",
                 phno: "",
                 matter: "",
             }
-            for (a in user) {
-                user[a] = document.getElementById(a).value
+            for (a in user1) {
+                user1[a] = document.getElementById(a).value
             }
-            users.push(user)
-            console.log(users)
+            users1.push(user1)
+            console.log(users1)
+            localStorage.setItem("users",JSON.stringify(users1))
+            window.location.href="index2display.html"
             displayusers();
-        }
-        function displayusers() {
-            document.querySelector("tbody").innerHTML = ""
-            users.forEach((usr) => {
-                var mytr = document.createElement("tr")
-                for (a in usr) {
-                    var mytd = document.createElement("td")
-                    mytd.innerHTML = usr[a]
-                    mytr.appendChild(mytd)
-                }
-                document.querySelector("tbody").appendChild(mytr)
-            })
-            clearform();
         }
         function clearform() {
             var user = {
@@ -175,8 +154,7 @@
             for (a in user) {
                 document.getElementById(a).value = ""
             }
-        }
-        
+        }   
     </script>
 </body>
 

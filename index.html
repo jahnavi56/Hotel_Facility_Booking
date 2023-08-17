@@ -8,44 +8,42 @@
     <link rel="stylesheet" href="./index.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 </head>
-
 <body>
     <div id="container">
-        <div id="header">
-            <h2>Restaurants Tables Booking Facility</h2>
-            <button class="first">Check Availability</button>
-        </div>
-        <div id="nav">
+        <header>
             <nav>
-                <a
-                    href="https://www.booking.com/index.en.html?aid=309654;label=hotels-english-en-india-8DW0FNCR9gZgfD3UQr1uBwS432876510914:pl:ta:p1:p2:ac:ap:neg:fi:tikwd-11212371:lp930264">home</a>
-                <a
-                    href="https://www.agoda.com/en-in/search?selectedproperty=463240&city=17269&hid=463240&site_id=1841706&tag=5d61ab35-f483-896d-7122-5012a7295f0e&device=c&network=g&adid=454628322905&rand=1695065421749674389&expid=&adpos=&gclid=Cj0KCQjwz8emBhDrARIsANNJjS72cAKrScUElrtObUnAeSZjZ1j-HuA0gIf05LS1t253tie7glV6cqoaAgS4EALw_wcB&pslc=1">about</a>
-                <a
-                    href="https://www.google.com/search?q=hotel+images&rlz=1C1RLNS_enIN1020IN1020&oq=hotel+images&aqs=chrome..69i57j0i512l9.7442j0j7&sourceid=chrome&ie=UTF-8#vhid=80kRAnG9M6qhXM&vssid=l">reservation</a>
-                <a href="">gallery</a>
-                <a href="">contact</a>
-                <a href="">reviews</a>
+                <div class="logo">
+                    <h2>Restaurants Tables Booking Facility</h2></div>
+                <div class="menu">
+                    <ul>
+                        <li><a href="index.html">home</a></li>
+                        <li><a href="https://www.agoda.com/en-in/search?selectedproperty=463240&city=17269&hid=463240&site_id=1841706&tag=5d61ab35-f483-896d-7122-5012a7295f0e&device=c&network=g&adid=454628322905&rand=1695065421749674389&expid=&adpos=&gclid=Cj0KCQjwz8emBhDrARIsANNJjS72cAKrScUElrtObUnAeSZjZ1j-HuA0gIf05LS1t253tie7glV6cqoaAgS4EALw_wcB&pslc=1">about</a></li>
+                        <li><a href="https://www.google.com/search?q=hotel+images&rlz=1C1RLNS_enIN1020IN1020&oq=hotel+images&aqs=chrome..69i57j0i512l9.7442j0j7&sourceid=chrome&ie=UTF-8#vhid=80kRAnG9M6qhXM&vssid=l">reservation</a></li>
+                        <li><a href="index4.html">gallery</a></li>
+                        <li><a href="index3.html">contact</a></li>
+                        <li><a href="">reviews</a></li>
+                    </ul>
+                </div>
             </nav>
-        </div>
+        </header>
         <div class="gallery">
             <div class="swiper">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide"><img
                             src="https://img.freepik.com/free-photo/restaurant-hall-with-lots-table_140725-6309.jpg?size=626&ext=jpg&ga=GA1.2.301797753.1688363773&semt=ais"
-                            width="960px" height="420px" alt=""></div>
+                            width="100%" height="520px"z-index="2" alt=""></div>
                     <div class="swiper-slide"><img
                             src="https://img.freepik.com/free-photo/sitting-table-with-chairs-yellow-sofa-restaurant-with-panoramic-view_114579-1523.jpg?size=626&ext=jpg&ga=GA1.2.301797753.1688363773&semt=ais"
-                            width="960px" height="420px" alt=""></div>
+                            width="100%" height="520px" z-index="2"alt=""></div>
                     <div class="swiper-slide"><img
                             src="https://img.freepik.com/free-photo/restaurant-table-private-room-with-fireplace-wooden-ceilings-brick-walls_140725-8458.jpg?size=626&ext=jpg&ga=GA1.2.301797753.1688363773&semt=ais"
-                            width="960px" height="420px" alt=""></div>
+                            width="100%" height="520px"z-index="2"alt=""></div>
                     <div class="swiper-slide"><img
                             src="https://img.freepik.com/premium-photo/elegant-table-setting-decorated-with-forget-me-flowers-candles-around-plates-wooden-background_195549-356.jpg?size=626&ext=jpg&ga=GA1.2.301797753.1688363773&semt=ais"
-                            width="960px" height="420px" alt=""></div>
+                            width="100%" height="520px"z-index="2" alt=""></div>
                     <div class="swiper-slide"><img
                             src="https://img.freepik.com/premium-photo/captivating-image-elegant-beach-dining-experience-bathed-warm-hues-setting-sun-creating-perfect-atmosphere-love-relaxation_674594-8629.jpg?size=626&ext=jpg&ga=GA1.2.301797753.1688363773&semt=ais"
-                            width="960px" height="420px" alt=""></div>
+                            width="100%" height="520px"z-index="2" alt=""></div>
                 </div>
                 <div class="swiper-pagination"></div>
                 <div class="swiper-button-prev"></div>
@@ -63,11 +61,11 @@
                     necessitatibus,
                     eligendi corporis autem ullam. Quo sapiente aut ducimus dolorum odio pariatur ad, minima impedit
                     obcaecati cumque quae!</p><br>
-                <button class="second">Contact Us</button>
+                <button class="second" onclick="reservation()">Make A Reservation</button>
             </div>
             <div id="box2">
                 <img src="https://img.freepik.com/premium-photo/assorted-indian-recipes-food-various_79295-7226.jpg?size=626&ext=jpg&ga=GA1.2.301797753.1688363773&semt=ais"
-                    width="380px" height="343px"id="cat1" alt="">
+                    width="380px" height="343px" id="cat1" alt="">
             </div>
         </div>
         <div id="box">
@@ -77,7 +75,7 @@
                     necessitatibus,
                     eligendi corporis autem ullam. Quo sapiente aut ducimus dolorum odio pariatur ad, minima impedit
                     obcaecati cumque quae!</p><br>
-                <button class="second" onclick="reservation()">Make A Reservation</button>
+                <button class="second" onclick="contactInfo()">Contact Us</button>
             </div>
             <div id="box4">
                 <img src="https://img.freepik.com/premium-photo/delicious-colorful-ice-cream-bowl-explosion-flavor-ice-cream-different-varieties_158863-11056.jpg?size=626&ext=jpg&ga=GA1.2.301797753.1688363773&semt=ais"
@@ -151,7 +149,7 @@
         </div>
         <div id="box">
             <div class="faq">
-                <h2 style="text-align: center;">FAQs</h2>
+                <h6 style="text-align: center;">FAQs</h6>
                 <ul class="accordion">
                     <li>
                         <input type="radio" name="accordion" id="first" checked>
@@ -200,7 +198,7 @@
             </div>
         </div>
         <div id="footer">
-         <p>&copy; copyright@ 2023by ms.web designer|all rights reserved</p>
+            <p>&copy; copyright@ 2023by ms.web designer|all rights reserved</p>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
@@ -229,8 +227,11 @@
         function reservation() {
             window.location.href = "http://127.0.0.1:5500/index1.html"
         }
-        function send(){
-            window.location.href="http://127.0.0.1:5500/index2.html"
+        function send() {
+            window.location.href = "http://127.0.0.1:5500/index2.html"
+        }
+        function contactInfo(){
+            window.location.href="http://127.0.0.1:5500/index3.html"
         }
     </script>
 </body>
